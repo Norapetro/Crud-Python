@@ -61,12 +61,12 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
     return db_user
 
 
-@app.put("/items/{item_id}")
-def update_item(item_id: int, item_data: schemas.ItemUpdate, db: Session = Depends(get_db)):  
-    db_item = crud.get_item(db, item_id)
-    if db_item is None:
-        raise HTTPException(status_code=404, detail="Item not found")
-    return crud.update_item(db=db, item=db_item, item_data=item_data)
+# @app.put("/items/{item_id}")
+# def update_item(item_id: int, item_data: schemas.ItemUpdate, db: Session = Depends(get_db)):  
+#     db_item = crud.get_item(db, item_id)
+#     if db_item is None:
+#         raise HTTPException(status_code=404, detail="Item not found")
+#     return crud.update_item(db=db, item=db_item, item_data=item_data)
 
 
 @app.put("/items/{item_id}", response_model=schemas.Item)
